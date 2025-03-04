@@ -21,15 +21,19 @@
             ships2.Object,
             ships3.Object,
         };
-        var positions = new List<Vector>
+
+        var positionIterator = new PositionIterator(uObjects.Count);
+        var positionList = new List<dynamic>();
+
+        foreach (var i in positionIterator)
         {
-            new Vector(0, 0),
-            new Vector(0, 10),
-            new Vector(0, 20)
-        };
+            positionList.Add(i);
+        }
+
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.All", (object[] args) => uObjects).Execute();
-        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.SetPosition", (object[] args) => new SetPositionCommand(positions)).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.SetPosition", (object[] args) => new SetPositionCommand(positionList)).Execute();
         IoC.Resolve<ICommand>("Game.Ships.SetPosition").Execute();
+
         ships1.VerifyAll();
         ships2.VerifyAll();
         ships3.VerifyAll();

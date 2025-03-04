@@ -1,7 +1,7 @@
 ﻿public class SetPositionCommand : ICommand
 {
-    private readonly List<Vector> _positions;
-    public SetPositionCommand(List<Vector> PositionList) => _positions = PositionList;
+    private readonly List<dynamic> _positions;
+    public SetPositionCommand(List<dynamic> PositionList) => _positions = PositionList;
 
     public void Execute()
     {
