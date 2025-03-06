@@ -11,7 +11,7 @@
     }
 
     [Fact]
-    public void AdapterTest()
+    public void SuccessfulAdapterStringTest()
     {
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "AdapterGeneration", (object[] args) => new AdapterGeneration().Run(args)).Execute();
 
@@ -19,7 +19,8 @@
 
         var result = IoC.Resolve<string>("AdapterGeneration", type);
 
-        var expected = @"public class IRotatebleAdapter : IRotateble
+        var expected = @"using System;
+public class IRotatebleAdapter : IRotateble
 {
     private IUObject _obj;
     public IRotatebleAdapter(IUObject obj) => _obj = obj;
@@ -33,7 +34,7 @@
     
         set
         {
-            _obj.SetProperty(""Angle"", _obj);
+            _obj.SetProperty(""Angle"", value);
         }
     }
     public Object AngularSpeed
