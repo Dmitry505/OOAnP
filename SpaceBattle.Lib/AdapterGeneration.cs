@@ -6,7 +6,8 @@ public class AdapterGeneration : IStrategy
     public object Run(params object[] args)
     {
         structure = (Type)args[0];
-        var template = Template.Parse(@"public class {{ structure_name }}Adapter : {{ structure_name }}
+        var template = Template.Parse(@"using System;
+public class {{ structure_name }}Adapter : {{ structure_name }}
 {
     private IUObject _obj;
     public {{ structure_name }}Adapter(IUObject obj) => _obj = obj;{{for property in (properties)}}
@@ -20,7 +21,7 @@ public class AdapterGeneration : IStrategy
     {{if property.can_write}}
     set
     {
-        _obj.SetProperty(""{{property.name}}"", _obj);
+        _obj.SetProperty(""{{property.name}}"", value);
     }{{end}}
     }
 {{end}}
