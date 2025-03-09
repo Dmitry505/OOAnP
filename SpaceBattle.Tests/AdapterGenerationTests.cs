@@ -52,4 +52,11 @@ public class IRotatebleAdapter : IRotateble
 
         Assert.Equal(expected, result);
     }
+
+    [Fact]
+    public void SetNullAdapterTest()
+    {
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "AdapterGeneration", (object[] args) => new AdapterGeneration().Run(args)).Execute();
+        Assert.Throws<NullReferenceException>(() => IoC.Resolve<string>("AdapterGeneration", null!));
+    }
 }
