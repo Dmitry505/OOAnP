@@ -11,7 +11,7 @@
     }
 
     [Fact]
-    public void TankFull()
+    public void CreatingDictionaryId()
     {
         var ships1 = new Mock<IUObject>();
         var ships2 = new Mock<IUObject>();
@@ -25,9 +25,9 @@
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.All", (object[] args) => uObjects).Execute();
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.SetId", (object[] _) => { return new Identification().SetId(); }).Execute();
-        var objId = IoC.Resolve<Dictionary<int, IUObject>>("Game.Ships.SetId");
+        var objId = IoC.Resolve<Dictionary<string, IUObject>>("Game.Ships.SetId");
 
         Assert.Equal(objId.Count, uObjects.Count);
-        Assert.Equal(objId[0], uObjects[0]);
+        Assert.True(objId.ContainsValue(uObjects[0]));
     }
 }
