@@ -1,6 +1,6 @@
-﻿public class ShootCommandTests
+﻿public class ShootRegisterTests
 {
-    public ShootCommandTests()
+    public ShootRegisterTests()
     {
         new InitScopeBasedIoCImplementationCommand().Execute();
 
@@ -20,9 +20,9 @@
         ships1.SetProperty("Angle", 45);
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Object.Shot", (object[] args) =>
-        { return new ShootCommand((PlayObject)args[0]); }).Execute();
+        { return new ShootRegister((PlayObject)args[0]); }).Execute();
 
-        var shot = IoC.Resolve<ShootCommand>("Game.Object.Shot", ships1).Shot();
+        var shot = IoC.Resolve<ShootRegister>("Game.Object.Shot", ships1).Shot();
         var shotPosition = shot.GetProperty("Position");
         var shotAngel = shot.GetProperty("Angle");
         var ShotSpeed = shot.GetProperty("Speed");

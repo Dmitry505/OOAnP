@@ -1,7 +1,7 @@
-﻿public class ShootCommand
+﻿public class ShootRegister
 {
     public readonly PlayObject ship;
-    public ShootCommand(PlayObject Ship) => ship = Ship;
+    public ShootRegister(PlayObject Ship) => ship = Ship;
     public PlayObject Shot()
     {
         var position = ship.GetProperty("Position");
