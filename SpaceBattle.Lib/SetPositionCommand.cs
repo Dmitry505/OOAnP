@@ -7,9 +7,10 @@
     {
         var ships = IoC.Resolve<List<IUObject>>("Game.Ships.All");
 
-        for (var i = 0; i < ships.Count; i++)
+        ships.Select((ship, index) =>
         {
-            ships[i].SetProperty("Position", _positions[i]);
-        }
+            ship.SetProperty("Position", _positions[index]);
+            return ship;
+        }).ToList();
     }
 }

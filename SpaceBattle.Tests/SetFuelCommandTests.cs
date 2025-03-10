@@ -11,7 +11,7 @@
     }
 
     [Fact]
-    public void TankFull()
+    public void TrueSetFuel()
     {
         var ships1 = new Mock<IUObject>();
         var ships2 = new Mock<IUObject>();

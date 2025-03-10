@@ -6,9 +6,6 @@
     public void Execute()
     {
         var ships = IoC.Resolve<List<IUObject>>("Game.Ships.All");
-        foreach (var ship in ships)
-        {
-            ship.SetProperty("Fuel", _fuelCount);
-        }
+        ships.ForEach(ship => ship.SetProperty("Fuel", _fuelCount));
     }
 }
