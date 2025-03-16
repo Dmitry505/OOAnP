@@ -43,7 +43,7 @@ public class AdapterWorkTests
             compilation.Emit(ms);
             ms.Seek(0, SeekOrigin.Begin);
             var assembly = Assembly.Load(ms.ToArray());
-            return assembly.GetType("IRotatebleAdapter");
+            return assembly.GetType("IRotatebleAdapter")!;
         }
     }
 
@@ -56,7 +56,7 @@ public class AdapterWorkTests
         mockUObject.Setup(m => m.GetProperty("Angle")).Returns(45);
         mockUObject.Setup(m => m.GetProperty("AngularSpeed")).Returns(60);
 
-        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object);
+        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object)!;
 
         var raelAngel = adapterInstance.Angle;
         mockUObject.Verify(m => m.GetProperty("Angle"), Times.Once);
@@ -77,7 +77,7 @@ public class AdapterWorkTests
         var mockUObject = new Mock<IUObject>();
         mockUObject.Setup(m => m.SetProperty("Angle", It.IsAny<object>()));
 
-        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object);
+        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object)!;
 
         adapterInstance.Angle = 90;
         mockUObject.Verify(m => m.SetProperty("Angle", 90), Times.Once);
@@ -93,7 +93,7 @@ public class AdapterWorkTests
         var mockUObject = new Mock<IUObject>();
         mockUObject.Setup(m => m.GetProperty("Angle")).Throws(new Exception("Angle not set"));
 
-        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object);
+        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object)!;
 
         var exception = Assert.Throws<Exception>(() => adapterInstance.Angle);
         Assert.Equal("Angle not set", exception.Message);
@@ -105,12 +105,12 @@ public class AdapterWorkTests
         var adapterType = CompileAdapter();
 
         var mockUObject = new Mock<IUObject>();
-        mockUObject.Setup(m => m.SetProperty("Angle", null))
+        mockUObject.Setup(m => m.SetProperty("Angle", null!))
             .Throws(new ArgumentNullException());
 
-        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object);
+        var adapterInstance = (IRotateble)Activator.CreateInstance(adapterType, mockUObject.Object)!;
 
-        Assert.Throws<ArgumentNullException>(() => adapterInstance.Angle = null);
+        Assert.Throws<ArgumentNullException>(() => adapterInstance.Angle = null!);
     }
 
     [Fact]
@@ -119,7 +119,7 @@ public class AdapterWorkTests
         var adapterType = CompileAdapter();
 
         var mockUObject = new Mock<IUObject>();
-        var adapterInstance = Activator.CreateInstance(adapterType, mockUObject.Object);
+        var adapterInstance = Activator.CreateInstance(adapterType, mockUObject.Object)!;
 
         var actualType = adapterInstance.GetType();
 
