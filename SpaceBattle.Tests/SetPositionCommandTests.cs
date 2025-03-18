@@ -34,8 +34,9 @@
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.SetPosition", (object[] args) => new SetPositionCommand(positionList)).Execute();
         IoC.Resolve<ICommand>("Game.Ships.SetPosition").Execute();
 
-        ships1.VerifyAll();
-        ships2.VerifyAll();
-        ships3.VerifyAll();
+        ships1.Verify(m => m.SetProperty("Position", It.IsAny<object>()), Times.Once);
+        ships2.Verify(m => m.SetProperty("Position", It.IsAny<object>()), Times.Once);
+        ships3.Verify(m => m.SetProperty("Position", It.IsAny<object>()), Times.Once);
+
     }
 }

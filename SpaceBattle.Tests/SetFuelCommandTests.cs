@@ -24,8 +24,8 @@
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.All", (object[] args) => uObjects).Execute();
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.Ships.SetFuel", (object[] args) => new SetFuelCommand(10)).Execute();
         IoC.Resolve<ICommand>("Game.Ships.SetFuel").Execute();
-        ships1.VerifyAll();
-        ships2.VerifyAll();
-        ships3.VerifyAll();
+        ships1.Verify(m => m.SetProperty("Fuel", 10), Times.Once);
+        ships2.Verify(m => m.SetProperty("Fuel", 10), Times.Once);
+        ships3.Verify(m => m.SetProperty("Fuel", 10), Times.Once);
     }
 }
