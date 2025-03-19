@@ -1,5 +1,4 @@
-﻿using Hwdtech;
-using Scriban;
+﻿using Scriban;
 
 public class AdapterGeneration : IStrategy
 {
