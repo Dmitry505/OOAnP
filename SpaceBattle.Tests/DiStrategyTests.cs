@@ -1,9 +1,4 @@
-﻿global using Hwdtech;
-global using Hwdtech.Ioc;
-using Moq;
-using Xunit;
-
-public class DiStrategyTests
+﻿public class DiStrategyTests
 {
     public DiStrategyTests()
     {
