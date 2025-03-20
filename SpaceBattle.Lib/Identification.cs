@@ -1,6 +1,4 @@
-﻿using Hwdtech;
-
-public class Identification
+﻿public class Identification
 {
     private Dictionary<string, IUObject> _idObj = new();
 

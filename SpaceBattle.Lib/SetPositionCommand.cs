@@ -1,6 +1,5 @@
-﻿using Hwdtech;
+﻿public class SetPositionCommand : ICommand
 
-public class SetPositionCommand : ICommand
 {
     private readonly List<dynamic> _positions;
     public SetPositionCommand(List<dynamic> PositionList) => _positions = PositionList;
