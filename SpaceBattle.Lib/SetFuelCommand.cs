@@ -1,4 +1,6 @@
-﻿public class SetFuelCommand : ICommand
+﻿using Hwdtech;
+
+public class SetFuelCommand : ICommand
 {
     public readonly int fuelCount;
     public SetFuelCommand(int fuel) => fuelCount = fuel;
