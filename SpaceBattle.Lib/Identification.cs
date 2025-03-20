@@ -1,4 +1,4 @@
-﻿using Hwdtech;
+using Hwdtech;
 
 public class Identification
 {
