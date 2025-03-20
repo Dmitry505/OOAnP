@@ -1,6 +1,4 @@
-﻿using Moq;
-
-public class ShootCommandTests
+﻿public class ShootCommandTests
 {
     public ShootCommandTests()
     {

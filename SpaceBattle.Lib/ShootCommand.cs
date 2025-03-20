@@ -1,4 +1,6 @@
-﻿public class ShootCommand : ICommand
+﻿using Hwdtech;
+
+public class ShootCommand : ICommand
 {
     public readonly IUObject ship;
     public ShootCommand(IUObject Ship) => ship = Ship;
